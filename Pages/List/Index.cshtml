@@ -1,0 +1,65 @@
+﻿@page
+@model ToDoList.Pages.List.IndexModel
+
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2 class="text-info">To Do List</h2>
+    </div>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Add to List</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if(Model.ListComponent.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <colgroup>
+                        @*<col span="4" style="background-color:aliceblue">*@
+                        @*<col style="background-color:darkgray">*@
+                    </colgroup>
+                    <tr class="table bg-secondary">
+                        <th>
+                            <label asp-for="ListComponent.FirstOrDefault().ItemToDo">Task To Do</label>
+                        </th>
+                        <th>
+                            <label asp-for="ListComponent.FirstOrDefault().CompletedBy">Date/Time to be Completed</label>
+                        </th>
+                        <th>
+                            @*Html.DisplayNameFor(m=>.listComponents.FirstOrDefault().ItemComplete)*@
+                            <label asp-for="ListComponent.FirstOrDefault().ItemComplete">Task Complete</label>
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    @foreach(var item in Model.ListComponent)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.ItemToDo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.CompletedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.ItemComplete)
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <a asp-page="Edit" asp-route-ID="@item.ID" class="btn btn-success btn-sm text-white">Edit</a>
+                    </td>
+                </tr>
+                }
+                </table>
+            }
+            else
+            {
+                <p> You have nothing to do!</p>
+            }
+        </form>
+    </div>
+
+</div>
