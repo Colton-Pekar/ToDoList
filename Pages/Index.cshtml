@@ -1,10 +1,59 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2 class="text-info">To Do List</h2>
+    </div>
+    <div class="col-12 border p-3 mt-3 text-center">
+        <form method="post" autocomplete="off">
+            @if (Model.ListComponent.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <colgroup>
+                        <col span="4" style="background-color:aliceblue">
+                        @*<col style="background-color:darkgray">*@
+                    </colgroup>
+                    <tr class="table bg-secondary">
+                        <th style="width:100px">
+                            <label asp-for="ListComponent.FirstOrDefault().ItemToDo" class="text-white text-center">Task</label>
+                        </th>
+                        <th style="width:100px">
+                            <label asp-for="ListComponent.FirstOrDefault().CompletedBy" class="text-white text-center">Date/Time to be Completed</label>
+                        </th>
+                        <th style="width:100px">
+                            @*Html.DisplayNameFor(m=>listComponents.FirstOrDefault().ItemComplete)*@
+                            <label asp-for="ListComponent.FirstOrDefault().ItemComplete" class="text-white text-center">Task Complete</label>
+                        </th>
+                        <th style="width:100px">
+                            <label class="text-white text-center">Modify Task</label>
+                        </th>
+                    </tr>
+                    @foreach (var item in Model.ListComponent)
+                    {
+                        <tr>
+                            <td style="width:100px">
+                                @Html.DisplayFor(m => item.ItemToDo)
+                            </td>
+                            <td style="width:100px">
+                                @Html.DisplayFor(m => item.CompletedBy)
+                            </td>
+                            <td style="width:100px">
+                                @Html.DisplayFor(m => item.ItemComplete)
+                            </td>
+                            <td style="width:100px">
+                                <button asp-page-handler="Complete" asp-route-id="@item.ID" onclick="return confirm('are you sure you want to mark as complete/incomplete?')" class="btn btn-outline-warning btn-sm">Confirm</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p> You have nothing to do!</p>
+            }
+        </form>
+    </div>
+
 </div>

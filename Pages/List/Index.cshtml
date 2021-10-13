@@ -11,8 +11,8 @@
         <a asp-page="Create" class="btn btn-info form-control text-white">Add to List</a>
     </div>
 
-    <div class="col-12 border p-3 mt-3">
-        <form method="post">
+    <div class="col-12 border p-3 mt-3 text-center">
+        <form method="post" autocomplete="off">
             @if (Model.ListComponent.Count() > 0)
             {
                 <table class="table table-striped border">
@@ -21,33 +21,33 @@
                         @*<col style="background-color:darkgray">*@
                     </colgroup>
                     <tr class="table bg-secondary">
-                        <th>
+                        <th style="width:100px">
                             <label asp-for="ListComponent.FirstOrDefault().ItemToDo" class="text-white text-center">Task</label>
                         </th>
-                        <th>
+                        <th style="width:100px">
                             <label asp-for="ListComponent.FirstOrDefault().CompletedBy" class="text-white text-center">Date/Time to be Completed</label>
                         </th>
-                        <th>
+                        <th style="width:100px">
                             @*Html.DisplayNameFor(m=>listComponents.FirstOrDefault().ItemComplete)*@
                             <label asp-for="ListComponent.FirstOrDefault().ItemComplete" class="text-white text-center">Task Complete</label>
                         </th>
-                        <th>
-
+                        <th style="width:100px">
+                            <label class="text-white text-center">Modify Task</label>
                         </th>
                     </tr>
                     @foreach (var item in Model.ListComponent)
                     {
                         <tr>
-                            <td>
+                            <td style="width:100px">
                                 @Html.DisplayFor(m => item.ItemToDo)
                             </td>
-                            <td>
+                            <td style="width:100px">
                                 @Html.DisplayFor(m => item.CompletedBy)
                             </td>
-                            <td>
+                            <td style="width:100px">
                                 @Html.DisplayFor(m => item.ItemComplete)
                             </td>
-                            <td>
+                            <td style="width:100px">
                                 <button asp-page-handler="Delete" asp-route-id="@item.ID" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
                                 <a asp-page="Edit" asp-route-ID="@item.ID" class="btn btn-success btn-sm text-white">Edit</a>
                             </td>
