@@ -23,5 +23,19 @@ namespace ToDoList.Pages.List
         {
             ListComponent = await _db.ListComponents.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var ListItem = await _db.ListComponents.FindAsync(id);
+            if (ListItem == null)
+            {
+                return NotFound();
+            }
+            _db.ListComponents.Remove(ListItem);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+
+        }
     }
 }

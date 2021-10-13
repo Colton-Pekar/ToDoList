@@ -13,46 +13,46 @@
 
     <div class="col-12 border p-3 mt-3">
         <form method="post">
-            @if(Model.ListComponent.Count() > 0)
+            @if (Model.ListComponent.Count() > 0)
             {
                 <table class="table table-striped border">
                     <colgroup>
-                        @*<col span="4" style="background-color:aliceblue">*@
+                        <col span="4" style="background-color:aliceblue">
                         @*<col style="background-color:darkgray">*@
                     </colgroup>
                     <tr class="table bg-secondary">
                         <th>
-                            <label asp-for="ListComponent.FirstOrDefault().ItemToDo">Task To Do</label>
+                            <label asp-for="ListComponent.FirstOrDefault().ItemToDo" class="text-white text-center">Task</label>
                         </th>
                         <th>
-                            <label asp-for="ListComponent.FirstOrDefault().CompletedBy">Date/Time to be Completed</label>
+                            <label asp-for="ListComponent.FirstOrDefault().CompletedBy" class="text-white text-center">Date/Time to be Completed</label>
                         </th>
                         <th>
-                            @*Html.DisplayNameFor(m=>.listComponents.FirstOrDefault().ItemComplete)*@
-                            <label asp-for="ListComponent.FirstOrDefault().ItemComplete">Task Complete</label>
+                            @*Html.DisplayNameFor(m=>listComponents.FirstOrDefault().ItemComplete)*@
+                            <label asp-for="ListComponent.FirstOrDefault().ItemComplete" class="text-white text-center">Task Complete</label>
                         </th>
                         <th>
 
                         </th>
                     </tr>
-                    @foreach(var item in Model.ListComponent)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(m => item.ItemToDo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.CompletedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(m => item.ItemComplete)
-                    </td>
-                    <td>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        <a asp-page="Edit" asp-route-ID="@item.ID" class="btn btn-success btn-sm text-white">Edit</a>
-                    </td>
-                </tr>
-                }
+                    @foreach (var item in Model.ListComponent)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.ItemToDo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.CompletedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ItemComplete)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.ID" onclick="return confirm('are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Edit" asp-route-ID="@item.ID" class="btn btn-success btn-sm text-white">Edit</a>
+                            </td>
+                        </tr>
+                    }
                 </table>
             }
             else
