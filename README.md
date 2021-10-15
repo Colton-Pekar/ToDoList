@@ -2,6 +2,7 @@
 
 Good morning Erik, Ryan, and Mina. Here is my ASP .Net Core To Do List website using razer pages. 
 In appsettings.json, I declare my default connection for the sql server name as '(LocalDB)\\MSSQLLocalDB'
+You may have to migrate the class to the db and then proceed with 'update-database'.
 To run the application, open the solution in Visual Studio (I used 19) with the sql server connected.
 Press the green play button (as you would obviously know) and let the application pop up
 
