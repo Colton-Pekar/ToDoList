@@ -31,6 +31,9 @@ namespace ToDoList.Migrations
                     b.Property<bool>("ItemComplete")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ItemDueDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ItemToDo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
