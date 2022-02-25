@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model ToDoList.Pages.List.CreateModel
 
 <br/>
@@ -14,6 +15,7 @@
             </div>
             <div class="col-6">
                 <input asp-for="List.ItemToDo" class="form-control" />
+                <label>@Model.item</label>
             </div>
             <span asp-validation-for="List.ItemToDo" class="text-danger">Item is required</span>
         </div>
@@ -23,6 +25,7 @@
             </div>
             <div class="col-6">
                 <input asp-for="List.CompletedBy" class="form-control" />
+                <label>@Model.completedby</label>
             </div>
             <span asp-validation-for="List.CompletedBy" class="text-danger"></span>
         </div>
@@ -32,6 +35,14 @@
             </div>
             <div class="col-3">
                 <a asp-page="Index" class="btn btn-suces form-control">Back to list</a>
+            </div>
+        </div>
+        <div  class="form-group row">
+            <div class="col-3 offset-3">
+            </div>
+            <div class="col-3"> 
+                <input asp-for="index" class="form-control" />
+                <label>@Model.index</label>
             </div>
         </div>
     </form>

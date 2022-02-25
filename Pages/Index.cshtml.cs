@@ -26,7 +26,7 @@ namespace ToDoList.Pages
         {
             ListComponent = await _db.ListComponents.ToListAsync();
         }
-        public async Task<IActionResult> OnPostComplete(int id)
+        public async Task<IActionResult> OnPost(int id)
         {
             var ListItem = await _db.ListComponents.FindAsync(id);
             if (ListItem == null)
